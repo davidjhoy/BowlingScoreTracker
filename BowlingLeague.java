@@ -7,19 +7,35 @@ public class BowlingLeague {
 
     
     ArrayList<Bowler> roster;
-    Games[] games;
+    ArrayList<Game> games;
     
 
-    public void BowlingLeague(){
+    public BowlingLeague(){
         System.out.println("Initiliazing League");
         roster = new ArrayList<Bowler>();
+        games = new Arraylist<Game>();
     }
 
-    public void toString(){
+    public String toString(){
         System.out.println("Output all the league info here");
+
+        // Bowler name
+        // Number of games
+        // Average score of all of the games
+        // Score of their last game
+        // Date of their last game
+
+        return 
+            """ 
+            
+            """;
     }
 
     public void addGame(){
+
+    }
+
+    public void addBowler(){
 
     }
 
