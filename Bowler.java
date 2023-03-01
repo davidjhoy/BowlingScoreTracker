@@ -1,37 +1,54 @@
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
+
 public class Bowler {
 
     private String name;
     private ArrayList<Game> games;
-    private int LastGameScore;
     private int careerPoints;
     
 
     public  Bowler(String n){
-        //calculate 
         name = n;
+        games = new ArrayList<Game>();
     }
 
     public void addGame(Game g){
         //update average from each game
         games.add(g);
         careerPoints += g.getScore();
-        //
+        
     }
 
-    //the Game list could be a stack since it would be easy to get the last game. 
-
     public int getAverageGameScore(){
-        if (games.size() == 0){
+        if (games.isEmpty()){
             return 0;
         }else{
             return careerPoints / games.size();
         }
     }
 
-    public Date getLastGameDate(){
-        Game lastGame = games.get(0);
-        return lastGame.getGameDate();
+
+    public String getLastGameDate(){
+        if (games.isEmpty()){
+            return "No Games Yet";
+        }else{
+            Game lastGame = games.get(games.size() - 1);
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+            String dateString = dateFormat.format(lastGame.getGameDate());
+            return dateString;
+        }
+        
+    }
+
+    public int getLastGameScore(){
+        if (games.isEmpty()){
+            return 0;
+        }else{
+            Game lastGame = games.get(games.size() - 1);
+            return lastGame.getScore();
+        }
     }
 
     public String toString(){
@@ -41,7 +58,10 @@ public class Bowler {
         // Average score of all of the games
         // Score of their last game
         // Date of their last game
-        
-        return "Bowler name:" + name + "/n" + "Number of Games: " + games.size() + "/n"  + "Average Game Score" + getAverageGameScore() + "/n" + "Last Game Score:" + LastGameScore + "/n" + "Last Game Date: " + getLastGameDate();
+        int AvgScore = getAverageGameScore();
+        int GameSize = games.size();
+        String lastGameDate = getLastGameDate();
+        int LastGameScore = getLastGameScore();
+        return "Bowler name: " + name + "\n" + "Number of Games: " + GameSize + "\n"  + "Average Game Score: " + AvgScore + "\n" + "Last Game Score: " + LastGameScore + "\n" + "Last Game Date: " + lastGameDate + "\n";
     }
 }
